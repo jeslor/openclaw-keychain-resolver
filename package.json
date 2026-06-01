@@ -1,0 +1,43 @@
+{
+  "name": "openclaw-keychain-resolver",
+  "version": "1.0.0",
+  "description": "Native OS keychain SecretRef resolver for OpenClaw — macOS Keychain, libsecret, Windows DPAPI",
+  "main": "dist/index.js",
+  "bin": {
+    "openclaw-keychain-resolver": "./dist/resolver.js",
+    "ckg": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/resolver.ts",
+    "test": "node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeslor/openclaw-keychain-resolver.git"
+  },
+  "keywords": [
+    "openclaw",
+    "keychain",
+    "secrets",
+    "security"
+  ],
+  "author": "Jeslor Ssozi",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jeslor/openclaw-keychain-resolver/issues"
+  },
+  "homepage": "https://github.com/jeslor/openclaw-keychain-resolver#readme",
+  "dependencies": {
+    "keytar": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
