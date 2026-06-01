@@ -1,6 +1,6 @@
 {
   "name": "openclaw-keychain-resolver",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Native OS keychain SecretRef resolver for OpenClaw — macOS Keychain, libsecret, Windows DPAPI",
   "main": "dist/resolver.js",
   "files": [
@@ -14,7 +14,7 @@
     "ckg": "./dist/cli.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && chmod +x dist/resolver.js dist/cli.js",
     "prepublishOnly": "npm run build",
     "dev": "tsx src/resolver.ts",
     "test": "node --test"
