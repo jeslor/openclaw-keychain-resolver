@@ -14,13 +14,14 @@ OpenClaw supports a `SecretRef` system that lets you pull secrets from external 
 
 **`openclaw-keychain-resolver`** is that binary. It bridges OpenClaw's `exec` SecretRef protocol to your operating system's native, encrypted keychain:
 
-| OS | Backend |
-|---|---|
-| macOS | Keychain (via Security framework) |
-| Linux | libsecret / GNOME Keyring |
-| Windows | DPAPI / Credential Manager |
+| OS      | Backend                           |
+| ------- | --------------------------------- |
+| macOS   | Keychain (via Security framework) |
+| Linux   | libsecret / GNOME Keyring         |
+| Windows | DPAPI / Credential Manager        |
 
 This means your API keys (Anthropic, OpenAI, GitHub tokens, etc.) are:
+
 - **Encrypted at rest** by the OS, not by you
 - **Unlocked only when your user session is active**
 - **Never written to disk in plaintext**
@@ -37,6 +38,7 @@ npm install -g openclaw-keychain-resolver
 ```
 
 > **Prerequisites:**
+>
 > - **macOS**: Xcode Command Line Tools (`xcode-select --install`)
 > - **Linux**: `sudo apt install libsecret-1-dev` (Debian/Ubuntu) or `sudo dnf install libsecret-devel` (Fedora)
 > - **Windows**: No extra steps — DPAPI is built in
@@ -96,7 +98,9 @@ Then reference it in your model or tool config:
 ```json
 {
   "env": {
-    "ANTHROPIC_API_KEY": { "secretRef": { "provider": "keychain", "id": "ANTHROPIC_API_KEY" } }
+    "ANTHROPIC_API_KEY": {
+      "secretRef": { "provider": "keychain", "id": "ANTHROPIC_API_KEY" }
+    }
   }
 }
 ```
@@ -107,12 +111,12 @@ OpenClaw will call the resolver automatically — your key never touches a file.
 
 ## OS Compatibility
 
-| Platform | Keychain Backend | Status |
-|---|---|---|
-| macOS 12+ | macOS Keychain (Security.framework) | ✅ Tested |
-| Ubuntu 20.04+ | libsecret / GNOME Keyring | ✅ Tested |
-| Fedora 36+ | libsecret / KWallet | ✅ Tested |
-| Windows 10/11 | DPAPI / Credential Manager | ✅ Tested |
+| Platform      | Keychain Backend                    | Status    |
+| ------------- | ----------------------------------- | --------- |
+| macOS 12+     | macOS Keychain (Security.framework) | ✅ Tested |
+| Ubuntu 20.04+ | libsecret / GNOME Keyring           | ✅ Tested |
+| Fedora 36+    | libsecret / KWallet                 | ✅ Tested |
+| Windows 10/11 | DPAPI / Credential Manager          | ✅ Tested |
 
 ---
 
@@ -123,7 +127,11 @@ OpenClaw's `exec` SecretRef protocol:
 1. OpenClaw spawns the resolver binary
 2. Sends JSON on `stdin`:
    ```json
-   { "protocolVersion": 1, "provider": "keychain", "ids": ["ANTHROPIC_API_KEY"] }
+   {
+     "protocolVersion": 1,
+     "provider": "keychain",
+     "ids": ["ANTHROPIC_API_KEY"]
+   }
    ```
 3. Resolver fetches each key from the OS keychain and writes JSON to `stdout`:
    ```json
@@ -148,4 +156,4 @@ npm run build
 
 ## License
 
-MIT © [Jeslor Ssozi](https://github.com/YOUR_USERNAME)
+MIT © [Jeslor Ssozi](https://github.com/jeslor)
