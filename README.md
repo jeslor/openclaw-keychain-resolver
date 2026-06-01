@@ -33,6 +33,40 @@ This directly addresses [OpenClaw Issue #43794](https://github.com/openclaw/open
 
 ## Install
 
+### Option A — OpenClaw Plugin (Recommended)
+
+Install as a managed OpenClaw plugin. OpenClaw auto-configures the `os-keychain` SecretRef provider — no manual `openclaw.json` edits needed.
+
+**Prerequisites (native build tools):**
+
+- **macOS**: `xcode-select --install`
+- **Linux**: `sudo apt install libsecret-1-dev` (Debian/Ubuntu) or `sudo dnf install libsecret-devel` (Fedora)
+- **Windows**: No extra steps
+
+```bash
+openclaw plugins install openclaw-keychain-resolver --dangerously-force-unsafe-install
+```
+
+After install, the `os-keychain` provider is available in your `openclaw.json`:
+
+```json
+{
+  "secrets": {
+    "providers": {
+      "os-keychain": {
+        "source": "exec",
+        "pluginIntegration": {
+          "pluginId": "openclaw-keychain-resolver",
+          "integrationId": "os-keychain"
+        }
+      }
+    }
+  }
+}
+```
+
+### Option B — Global npm (Manual exec config)
+
 ```bash
 npm install -g openclaw-keychain-resolver
 ```
@@ -70,7 +104,9 @@ ckg import-env
 
 ---
 
-## Wire it up to OpenClaw
+## Manual exec config
+
+> This section is for **Option B** (global npm install). If you used the OpenClaw plugin install, this is auto-configured for you.
 
 Find the resolver path, then add it to your `openclaw.json`:
 

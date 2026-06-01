@@ -1,0 +1,20 @@
+{
+  "id": "openclaw-keychain-resolver",
+  "name": "Native OS Keychain",
+  "description": "Resolve OpenClaw SecretRefs from the native OS keychain — macOS Keychain Services, GNOME libsecret, or Windows Credential Manager (DPAPI).",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  },
+  "secretProviderIntegrations": {
+    "os-keychain": {
+      "providerAlias": "os-keychain",
+      "displayName": "Native OS Keychain",
+      "source": "exec",
+      "command": "${node}",
+      "args": ["./dist/resolver.js"],
+      "jsonOnly": true
+    }
+  }
+}
