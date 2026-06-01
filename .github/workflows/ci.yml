@@ -75,7 +75,10 @@ jobs:
       - name: Test — resolver exits 1 on malformed JSON
         shell: bash
         run: |
-          echo "not-json" | node dist/resolver.js; EXIT=$?
+          set +e
+          echo "not-json" | node dist/resolver.js
+          EXIT=$?
+          set -e
           [ $EXIT -eq 1 ] && echo "✅ Malformed JSON test passed" || (echo "❌ Expected exit 1, got $EXIT" && exit 1)
 
       - name: Test — CLI help output
