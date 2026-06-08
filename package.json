@@ -3,6 +3,10 @@
   "version": "1.2.0",
   "description": "Native OS keychain SecretRef resolver for OpenClaw — macOS Keychain, libsecret, Windows DPAPI",
   "main": "dist/resolver.js",
+  "configSchema": {
+    "type": "object",
+    "properties": {}
+  },
   "files": [
     "dist",
     "openclaw.plugin.json",
@@ -42,7 +46,10 @@
     },
     "build": {
       "openclawVersion": "2026.6.1"
-    }
+    },
+    "extensions": [
+      "./dist/resolver.js"
+    ]
   },
   "bugs": {
     "url": "https://github.com/jeslor/openclaw-keychain-resolver/issues"
