@@ -192,4 +192,4 @@ npm run build
 
 ## License
 
-MIT © [Jeslor Ssozi](https://github.com/jeslor)
+MIT © [License](https://github.com/jeslor/openclaw-keychain-resolver/blob/main/LICENSE)
